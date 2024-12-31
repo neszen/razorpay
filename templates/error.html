@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+        body {
+          /* background-color: #0b0d17; */
+          background-color: #000;
+          color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+  
+        .success-container {
+          text-align: center;
+          /* background-color: #1c1f2a; */
+          padding: 2rem;
+          border-radius: 1rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+  
+        .success-icon {
+          font-size: 4rem;
+          color: #28a745;
+        }
+  
+        .success-text {
+          font-size: 1.5rem;
+          margin: 1rem 0;
+        }
+  
+        .btn-custom {
+          background-color: #9568ff;
+          border-color: #9568ff;
+          font-size: 1rem;
+          padding: 0.5rem 1.5rem;
+          border-radius: 0.5rem;
+          color: white;
+          font-weight: bold;
+          margin: 0.5rem;
+        }
+  
+        .btn-custom:hover {
+          background-color: #6f4bcc;
+          border-color: #6f4bcc;
+          color: white;
+        }
+      </style>
+  
+      <div class="success-container">
+        <i class="fas fa-times-circle success-icon"></i>
+        <div class="success-text">Oops!</div>
+        <p>Something went wrong</p>
+        <a href="{% url 'products' %}" class="btn btn-custom">Back to home</a>
+        
+       </div>
+  
+  
+</body>
+</html>

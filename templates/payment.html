@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product_name }}</title>
+</head>
+<body>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script type="text/javascript">
+    var options = {
+        "key": "{{ razorpay_key_id }}", 
+        "amount": "{{ price|floatformat:2 }}00",
+        "currency": "INR",
+        "order_id": "{{ order_id }}", 
+        "name": "{{ product_name }}",
+        "description": "{{ product_name }}",
+        "handler": function (response) {
+            const orderId = "{{ order_id }}";
+            const checkPaymentStatus = () => {
+                fetch(`/payment_status/${orderId}/`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.location.href = '/'; 
+                    } else if (data.status === 'failed') {
+                        window.location.href = '/error/';
+                    } else {
+                        setTimeout(checkPaymentStatus, 3000);
+                    }
+                });
+            };
+            checkPaymentStatus();
+        },
+        "modal": {
+            "ondismiss": function () {
+                console.log("Payment modal closed by user.");
+                window.location.href = "/error/"; 
+            }
+        },
+
+        "prefill": {
+            "name": "Customer Name",
+            "email": "customer@example.com",
+            "contact": "1234567890"
+        },
+        "theme": {
+            "color": "#F37254"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+</script>
+</body>
+</html>

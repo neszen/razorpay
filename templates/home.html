@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home - NESZEN {% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to the Chat Application</h1>
+    <hr class="my-4">
+    <p>Use the navigation bar to access your profile.</p>
+    {% if user.is_authenticated %}
+    <h2>Hello, {{ username }}!</h2>
+    <a href="{% url 'user_list' %}" class="btn btn-primary">Start Chat</a>
+    {% endif %}
+</div>
+{% endblock %}
